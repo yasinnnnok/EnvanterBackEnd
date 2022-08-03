@@ -29,7 +29,7 @@ namespace Business.Repositories.UserRepository
             _emailParameterService = emailParameterService;
         }
 
-        [RemoveCacheAspect("IUserService.Get")]
+       // [RemoveCacheAspect("IUserService.Get")]
         public async Task Add(RegisterAuthDto registerDto)
         {
             string fileName = _fileService.FileSaveToServer(registerDto.Image, "./Content/Img/");
@@ -81,26 +81,26 @@ namespace Business.Repositories.UserRepository
             return result;
         }
 
-        [SecuredAspect()]
+       // [SecuredAspect()]
         [ValidationAspect(typeof(UserValidator))]
-        [RemoveCacheAspect("IUserService.Get")]
+      //  [RemoveCacheAspect("IUserService.Get")]
         public async Task<IResult> Update(User user)
         {
             await _userDal.Update(user);
             return new SuccessResult(UserMessages.UpdatedUser);
         }
 
-        [SecuredAspect()]
-        [RemoveCacheAspect("IUserService.Get")]
+     //   [SecuredAspect()]
+       // [RemoveCacheAspect("IUserService.Get")]
         public async Task<IResult> Delete(User user)
         {
             await _userDal.Delete(user);
             return new SuccessResult(UserMessages.DeletedUser);
         }
 
-        [SecuredAspect()]
-        [CacheAspect(60)]
-        [PerformanceAspect(3)]
+     //   [SecuredAspect()]
+//[CacheAspect(60)]
+//[PerformanceAspect(3)]
         public async Task<IDataResult<List<User>>> GetList()
         {
             return new SuccessDataResult<List<User>>(await _userDal.GetAll());
@@ -116,8 +116,8 @@ namespace Business.Repositories.UserRepository
             return await _userDal.Get(p => p.Id == id);
         }
 
-        [SecuredAspect()]
-        [ValidationAspect(typeof(UserChangePasswordValidator))]
+       // [SecuredAspect()]
+       // [ValidationAspect(typeof(UserChangePasswordValidator))]
         public async Task<IResult> ChangePassword(UserChangePasswordDto userChangePasswordDto)
         {
             var user = await _userDal.Get(p => p.Id == userChangePasswordDto.UserId);

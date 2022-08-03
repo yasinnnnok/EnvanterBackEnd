@@ -21,9 +21,9 @@ namespace Business.Repositories.EmailParameterRepository
             _emailParameterDal = emailParameterDal;
         }
 
-        [SecuredAspect()]
-        [ValidationAspect(typeof(EmailParameterValidator))]
-        [RemoveCacheAspect("IEmailParameterService.Get")]
+       // [SecuredAspect()]
+      //  [ValidationAspect(typeof(EmailParameterValidator))]
+       // [RemoveCacheAspect("IEmailParameterService.Get")]
         public async Task<IResult> Add(EmailParameter emailParameter)
         {
             await _emailParameterDal.Add(emailParameter);
@@ -31,8 +31,8 @@ namespace Business.Repositories.EmailParameterRepository
 
         }
 
-        [SecuredAspect()]
-        [RemoveCacheAspect("IEmailParameterService.Get")]
+       // [SecuredAspect()]
+       // [RemoveCacheAspect("IEmailParameterService.Get")]
         public async Task<IResult> Delete(EmailParameter emailParameter)
         {
             await _emailParameterDal.Delete(emailParameter);
@@ -49,7 +49,7 @@ namespace Business.Repositories.EmailParameterRepository
             return await _emailParameterDal.GetFirst();
         }
 
-        [CacheAspect()]
+      //  [CacheAspect()]
         public async Task<IDataResult<List<EmailParameter>>> GetList()
         {
             return new SuccessDataResult<List<EmailParameter>>(await _emailParameterDal.GetAll());
@@ -82,9 +82,9 @@ namespace Business.Repositories.EmailParameterRepository
 
         }
 
-        [SecuredAspect()]
-        [ValidationAspect(typeof(EmailParameterValidator))]
-        [RemoveCacheAspect("IEmailParameterService.Get")]
+       // [SecuredAspect()]
+      //  [ValidationAspect(typeof(EmailParameterValidator))]
+//[RemoveCacheAspect("IEmailParameterService.Get")]
         public async Task<IResult> Update(EmailParameter emailParameter)
         {
             await _emailParameterDal.Update(emailParameter);

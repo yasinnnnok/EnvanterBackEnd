@@ -20,9 +20,9 @@ namespace Business.Repositories.OperationClaimRepository
             _operationClaimDal = operationClaimDal;
         }
 
-        [SecuredAspect()]
-        [ValidationAspect(typeof(OperationClaimValidator))]
-        [RemoveCacheAspect("IOperationClaimService.Get")]
+      //  [SecuredAspect()]
+       // [ValidationAspect(typeof(OperationClaimValidator))]
+     //   [RemoveCacheAspect("IOperationClaimService.Get")]
         public async Task<IResult> Add(OperationClaim operationClaim)
         {
             IResult result = BusinessRules.Run(await IsNameExistForAdd(operationClaim.Name));
@@ -35,9 +35,9 @@ namespace Business.Repositories.OperationClaimRepository
             return new SuccessResult(OperationClaimMessages.Added);
         }
 
-        [SecuredAspect()]
-        [ValidationAspect(typeof(OperationClaimValidator))]
-        [RemoveCacheAspect("IOperationClaimService.Get")]
+      //  [SecuredAspect()]
+//[ValidationAspect(typeof(OperationClaimValidator))]
+//[RemoveCacheAspect("IOperationClaimService.Get")]
         public async Task<IResult> Update(OperationClaim operationClaim)
         {
             IResult result = BusinessRules.Run(await IsNameExistForUpdate(operationClaim));
@@ -50,16 +50,16 @@ namespace Business.Repositories.OperationClaimRepository
             return new SuccessResult(OperationClaimMessages.Updated);
         }
 
-        [SecuredAspect()]
-        [RemoveCacheAspect("IOperationClaimService.Get")]
+      //  [SecuredAspect()]
+     //   [RemoveCacheAspect("IOperationClaimService.Get")]
         public async Task<IResult> Delete(OperationClaim operationClaim)
         {
             await _operationClaimDal.Delete(operationClaim);
             return new SuccessResult(OperationClaimMessages.Deleted);
         }
 
-        [CacheAspect()]
-        [PerformanceAspect()]
+       // [CacheAspect()]
+      //  [PerformanceAspect()]
         public async Task<IDataResult<List<OperationClaim>>> GetList()
         {
             return new SuccessDataResult<List<OperationClaim>>(await _operationClaimDal.GetAll());
