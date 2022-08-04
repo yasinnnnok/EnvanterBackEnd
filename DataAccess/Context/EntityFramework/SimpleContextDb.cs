@@ -1,4 +1,4 @@
-﻿using Entities.Concrete;
+using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Context.EntityFramework
@@ -17,5 +17,14 @@ namespace DataAccess.Context.EntityFramework
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         public DbSet<EmailParameter> EmailParameters { get; set; }
+        public DbSet<Anakart> Anakarts { get; set; }
+        public DbSet<Cpu> Cpus { get; set; }
+        public DbSet<EkranKarti> EkranKartis { get; set; }
+        public DbSet<Firma> Firmas { get; set; }
+        public DbSet<IsletimSistemi> IsletimSistemis { get; set; }
+        public DbSet<Kategori> Kategoris { get; set; }
+        public DbSet<MarkaModel> MarkaModels { get; set; }
+        public DbSet<Urun> Uruns { get; set; }
+        public DbSet<Verilen> Verilens { get; set; }
     }
 }
