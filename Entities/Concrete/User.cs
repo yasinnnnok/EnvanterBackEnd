@@ -13,5 +13,6 @@
         public string ForgotPasswordValue { get; set;}
         public DateTime? ForgotPasswordRequestDate { get; set; }
         public bool IsForgotPasswordComplete { get; set; }
+        public int BirimId { get; set; }
     }
 }

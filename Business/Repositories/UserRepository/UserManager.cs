@@ -71,7 +71,9 @@ namespace Business.Repositories.UserRepository
             user.Name = registerDto.Name;
             user.PasswordHash = passwordHash;
             user.PasswordSalt = paswordSalt;
-            user.ImageUrl = fileName;            
+            user.ImageUrl = fileName;
+            user.BirimId = registerDto.BirimId;
+            
             return user;
         }
 

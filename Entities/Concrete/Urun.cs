@@ -32,6 +32,7 @@ namespace Entities.Concrete
         public int Saat { get; set; }
         public decimal EkranBoyutu { get; set; }
         public int  DahiliNumara { get; set; }
+        public bool Verildi { get; set; }
 
 
 
