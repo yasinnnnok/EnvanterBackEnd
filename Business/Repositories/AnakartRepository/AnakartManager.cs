@@ -50,6 +50,12 @@ namespace Business.Repositories.AnakartRepository
 
         public async Task<IResult> Update(Anakart anakart)
         {
+            IResult resultId = BusinessRules.Run(await IsIdExist(anakart));
+            if (resultId != null)
+            {
+                return resultId;
+            }
+
             IResult result = BusinessRules.Run(await IsNameExistForUpdate(anakart));
             if (result!= null)
             {
@@ -65,8 +71,14 @@ namespace Business.Repositories.AnakartRepository
 
         public async Task<IResult> Delete(Anakart anakart)
         {
-            await _anakartDal.Delete(anakart);
-            return new SuccessResult(AnakartMessages.Deleted);
+            IResult result = BusinessRules.Run(await IsIdExist(anakart));
+            if (result==null)
+            {
+                await _anakartDal.Delete(anakart);
+                return new SuccessResult(AnakartMessages.Deleted);
+               
+            }
+            return result;
         }
 
         // [SecuredAspect()]
@@ -98,7 +110,7 @@ namespace Business.Repositories.AnakartRepository
         {
             //Bu id yi bul.
             var currentAnakart = await _anakartDal.Get(p=> p.Id == anakart.Id);
-
+         
             //vt dekinden farklý ise iþleme devam et.
             if (currentAnakart.AnakartAdi != anakart.AnakartAdi)
             {                
@@ -110,6 +122,16 @@ namespace Business.Repositories.AnakartRepository
                 }
             }
             //yeni girilen anakart adý yok demekki. Baþarýlý dön
+            return new SuccessResult();
+        }
+
+        private async Task<IResult> IsIdExist(Anakart anakart)
+        {
+            var result = await _anakartDal.Get(p => p.Id == anakart.Id);
+            if (result == null)
+            {
+                return new ErrorResult(AnakartMessages.AnakartIdIsNotAvaible);
+            }
             return new SuccessResult();
         }
 

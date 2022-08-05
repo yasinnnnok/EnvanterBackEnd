@@ -12,5 +12,6 @@ namespace Business.Repositories.AnakartRepository.Constants
         public static string Updated = "Güncelleme işlemi başarılı";
         public static string Deleted = "Silme işlemi başarılı";
         public static string AnakartadiIsNotAvaible = "Bu anakart adı daha önce kullanılmış";
+        public static string AnakartIdIsNotAvaible = "Bu ID ye sahip bir anakart yok.";
     }
 }
